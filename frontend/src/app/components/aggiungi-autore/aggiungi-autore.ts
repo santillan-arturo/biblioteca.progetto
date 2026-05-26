@@ -1,13 +1,15 @@
 import { Component } from '@angular/core';
+import { FormsModule } from '@angular/forms'; // 👈 Importiamo i form qui
 import { BibliotecaService } from '../../services/biblioteca';
 
 @Component({
   selector: 'app-aggiungi-autore',
-  templateUrl: './aggiungi-autore.component.html',
-  styleUrls: ['./aggiungi-autore.component.css']
+  standalone: true,                            // 👈 Confermiamo che è standalone
+  imports: [FormsModule],                      // 👈 Diamo i Form a QUESTO componente
+  templateUrl: './aggiungi-autore.html',
+  styleUrls: ['./aggiungi-autore.css']
 })
 export class AggiungiAutoreComponent {
-  // Oggetto che conterrà i dati inseriti nel form dall'utente
   nuovoAutore = {
     Nome: '',
     Cognome: '',
@@ -16,12 +18,10 @@ export class AggiungiAutoreComponent {
 
   constructor(private bibliotecaService: BibliotecaService) {}
 
-  // Funzione che si attiva quando l'utente preme il bottone "Invia"
   inviaForm() {
     this.bibliotecaService.aggiungiAutore(this.nuovoAutore).subscribe({
       next: (risposta) => {
         alert('Autore inserito con successo nel database!');
-        // Svuota il form dopo il salvataggio
         this.nuovoAutore = { Nome: '', Cognome: '', Nazionalita: '' };
       },
       error: (errore) => {

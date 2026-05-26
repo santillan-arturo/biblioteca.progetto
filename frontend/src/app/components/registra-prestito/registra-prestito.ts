@@ -1,28 +1,28 @@
 import { Component } from '@angular/core';
+import { FormsModule } from '@angular/forms'; // 👈 Importiamo i form qui
 import { BibliotecaService } from '../../services/biblioteca';
 
 @Component({
   selector: 'app-registra-prestito',
-  templateUrl: './registra-prestito.component.html',
-  styleUrls: ['./registra-prestito.component.css']
+  standalone: true,                            // 👈 Confermiamo che è standalone
+  imports: [FormsModule],                      // 👈 Diamo i Form a QUESTO componente
+  templateUrl: './registra-prestito.html',
+  styleUrls: ['./registra-prestito.css']
 })
 export class RegistraPrestitoComponent {
-  // Oggetto che conterrà i dati del prestito scritti nel form
   nuovoPrestito = {
     Data_Inizio: '',
     Data_Scadenza: '',
-    id_copie_fk: null, // ID della copia del libro preso in prestito
-    id_utenti_fk: null  // ID dell'utente che prende il libro
+    id_copie_fk: null,
+    id_utenti_fk: null
   };
 
   constructor(private bibliotecaService: BibliotecaService) {}
 
-  // Funzione che si attiva quando l'utente preme il bottone "Registra"
   inviaForm() {
     this.bibliotecaService.aggiungiPrestito(this.nuovoPrestito).subscribe({
       next: (risposta) => {
         alert('Prestito registrato con successo nel database!');
-        // Resetta il form
         this.nuovoPrestito = { Data_Inizio: '', Data_Scadenza: '', id_copie_fk: null, id_utenti_fk: null };
       },
       error: (errore) => {

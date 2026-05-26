@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
-import { provideHttpClient } from '@angular/common/http'; // 👈 Usiamo questo che è moderno e facilissimo!
+import { provideHttpClient } from '@angular/common/http';
 
 import { App } from './app';
 import { AggiungiAutoreComponent } from './components/aggiungi-autore/aggiungi-autore';
@@ -9,16 +9,16 @@ import { RegistraPrestitoComponent } from './components/registra-prestito/regist
 
 @NgModule({
   declarations: [
-    App,
-    AggiungiAutoreComponent,
-    RegistraPrestitoComponent
+    App // 👈 Qui lasciamo solo App
   ],
   imports: [
     BrowserModule,
-    FormsModule // 👈 Qui dentro ora c'è solo questo, super pulito!
+    FormsModule,
+    AggiungiAutoreComponent,
+    RegistraPrestitoComponent 
   ],
   providers: [
-    provideHttpClient() // 👈 Diciamo ad Angular di attivare internet da qui
+    provideHttpClient()
   ],
   bootstrap: [App]
 })

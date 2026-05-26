@@ -8,6 +8,8 @@
   "projects": {
     "frontend": {
       "projectType": "application",
+      "schematics": {},
+
       "schematics": {
         "@schematics/angular:component": {
           "standalone": false

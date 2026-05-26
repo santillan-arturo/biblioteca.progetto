@@ -1,0 +1,46 @@
+<div class="container" style="padding: 20px; font-family: sans-serif; max-width: 600px; margin: 0 auto;">
+  
+  <a routerLink="/" style="color: #007bff; text-decoration: none; font-weight: bold;">← Torna alla Home</a>
+
+  <div *ngIf="!libro" style="margin-top: 20px; text-align: center; color: #777;">
+    <p>Caricamento dettagli in corso o libro non trovato...</p>
+  </div>
+
+  <div *ngIf="libro" style="margin-top: 20px; border: 1px solid #ccc; border-radius: 8px; padding: 25px; box-shadow: 0 4px 10px rgba(0,0,0,0.08); background-color: #fff;">
+    
+    <span style="background-color: #e2f0fe; color: #007bff; padding: 4px 10px; border-radius: 20px; font-size: 12px; font-weight: bold; text-transform: uppercase;">
+      {{ libro.Genere_Nome }}
+    </span>
+
+    <h1 style="color: #222; margin-top: 10px; margin-bottom: 5px; font-size: 28px;">{{ libro.Titolo }}</h1>
+    
+    <p style="font-size: 18px; color: #555; margin-top: 0; margin-bottom: 20px;">
+      di <strong>{{ libro.Autore_Nome }} {{ libro.Autore_Cognome }}</strong>
+    </p>
+
+    <hr style="border: 0; border-top: 1px solid #eee; margin: 20px 0;">
+
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px; font-size: 15px; color: #444;">
+      <div>
+        <span style="color: #888; display: block; font-size: 12px; text-transform: uppercase;">Codice ID Libro</span>
+        <strong>{{ libro.id_libri }}</strong>
+      </div>
+      
+      <div>
+        <span style="color: #888; display: block; font-size: 12px; text-transform: uppercase;">Codice ISBN</span>
+        <strong>{{ libro.ISBN || 'Non disponibile' }}</strong>
+      </div>
+
+      <div>
+        <span style="color: #888; display: block; font-size: 12px; text-transform: uppercase;">Anno di Pubblicazione</span>
+        <strong>{{ libro.Anno_Pubblicazione }}</strong>
+      </div>
+
+      <div>
+        <span style="color: #888; display: block; font-size: 12px; text-transform: uppercase;">Casa Editrice</span>
+        <strong>{{ libro.Nome || 'Dato non inserito' }}</strong> 
+        </div>
+    </div>
+
+  </div>
+</div>

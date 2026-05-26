@@ -1,0 +1,28 @@
+<div class="form-container">
+  <h2>📖 Registra un Nuovo Prestito</h2>
+  
+  <form (ngSubmit)="inviaForm()">
+    
+    <div class="form-group">
+      <label for="dataInizio">Data Inizio:</label>
+      <input type="date" id="dataInizio" name="dataInizio" [(ngModel)]="nuovoPrestito.Data_Inizio" required>
+    </div>
+
+    <div class="form-group">
+      <label for="dataScadenza">Data Scadenza:</label>
+      <input type="date" id="dataScadenza" name="dataScadenza" [(ngModel)]="nuovoPrestito.Data_Scadenza" required>
+    </div>
+
+    <div class="form-group">
+      <label for="idCopie">ID Copia Libro:</label>
+      <input type="number" id="idCopie" name="idCopie" [(ngModel)]="nuovoPrestito.id_copie_fk" required placeholder="Es. 1">
+    </div>
+
+    <div class="form-group">
+      <label for="idUtenti">ID Utente:</label>
+      <input type="number" id="idUtenti" name="idUtenti" [(ngModel)]="nuovoPrestito.id_utenti_fk" required placeholder="Es. 42">
+    </div>
+
+    <button type="submit">Registra Prestito</button>
+  </form>
+</div>

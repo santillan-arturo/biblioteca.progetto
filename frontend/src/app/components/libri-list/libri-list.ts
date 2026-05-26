@@ -1,42 +1,35 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterModule, ActivatedRoute } from '@angular/router';
-import { FormsModule } from '@angular/forms'; // 👈 Serve per far funzionare la barra di ricerca (NgModel)
+import { RouterModule } from '@angular/router';
+import { FormsModule } from '@angular/forms'; // 👈 1. IMPORTIAMO GLI INPUT DI ANGULAR
 import { BibliotecaService } from '../../services/biblioteca';
 
 @Component({
   selector: 'app-libri-list',
   standalone: true,
-  imports: [CommonModule, RouterModule, FormsModule], // 👈 Ricordati di includere FormsModule
-  templateUrl: './libri-list.component.html',
-  styleUrls: ['./libri-list.component.css']
+  imports: [CommonModule, RouterModule, FormsModule], // 👈 2. AGGIUNGIAMO FORMSMODULE QUI
+  templateUrl: './libri-list.html',
+  styleUrls: ['./libri-list.css']
 })
 export class LibriListComponent implements OnInit {
-  
-  idGenere: number = 0;
   listaLibri: any[] = [];
-  testoRicerca: string = ''; // 👈 Stringa collegata all'input di ricerca dell'utente
+  testoRicerca: string = ''; // 👈 3. DICHIARIAMO LA VARIABILE CHE MANCAVA!
 
-  // Iniettiamo sia il nostro servizio, sia "ActivatedRoute" (che serve a leggere l'URL)
-  constructor(
-    private bibliotecaService: BibliotecaService,
-    private route: ActivatedRoute
-  ) { }
+  constructor(private bibliotecaService: BibliotecaService) {}
 
   ngOnInit(): void {
-    // Leggiamo il parametro ':id' dall'URL (es. se siamo su /genere/1, prenderà 1)
-    this.idGenere = Number(this.route.snapshot.paramMap.get('id'));
     this.caricaLibri();
   }
 
-  // Recupera i libri chiedendoli a Flask (passando l'ID del genere e l'eventuale ricerca)
   caricaLibri(): void {
-    this.bibliotecaService.getLibriPerGenere(this.idGenere, this.testoRicerca).subscribe({
+    // Passiamo il testo della ricerca alla tua funzione del servizio
+    this.bibliotecaService.getLibriPerGenere(1, this.testoRicerca).subscribe({
       next: (data: any) => {
         this.listaLibri = data;
+        console.log('Libri caricati con successo:', data);
       },
       error: (err: any) => {
-        console.error('Errore nel recupero dei libri:', err);
+        console.error('Errore durante il caricamento dei libri:', err);
       }
     });
   }

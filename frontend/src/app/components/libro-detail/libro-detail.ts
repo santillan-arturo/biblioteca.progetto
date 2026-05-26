@@ -7,8 +7,8 @@ import { BibliotecaService } from '../../services/biblioteca';
   selector: 'app-libro-detail',
   standalone: true,
   imports: [CommonModule, RouterModule],
-  templateUrl: './libro-detail.component.html',
-  styleUrls: ['./libro-detail.component.css']
+  templateUrl: './libro-detail.html',
+  styleUrls: ['./libro-detail.css']
 })
 export class LibroDetailComponent implements OnInit {
 

@@ -6,10 +6,10 @@ app = Flask(__name__)
 CORS(app)
 
 # ⚠️ INSERISCI LE TUE CREDENZIALI REALI DI TIDB CLOUD
-TIDB_HOST = "gateway01.eu-central-1.prod.aws.tidbcloud.com"
-TIDB_PORT = 4000
-TIDB_USER = "25yXT27TJzSPnCJ.root"
-TIDB_PASSWORD = "lYsvBk8vWnsCs6gd"
+HOST = "gateway01.eu-central-1.prod.aws.tidbcloud.com"
+PORT = 4000
+USER = "25yXT27TJzSPnCJ.root"
+PASSWORD = "lYsvBk8vWnsCs6gd"
 TIDB_DB = "sys" 
 
 def get_db_connection():
@@ -84,4 +84,5 @@ def get_dettaglio_libro(id_libro):
     return jsonify(libro)
 
 if __name__ == '__main__':
-    app.run(debug=True, port=5000)
+    print("--- STO ACCENDENDO IL SERVER FLASK ---") # 👈 Mettiamo questo per test!
+    app.run(host='0.0.0.0', port=5000, debug=True)

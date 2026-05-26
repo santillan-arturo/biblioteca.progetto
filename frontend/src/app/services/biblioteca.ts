@@ -7,8 +7,8 @@ import { Observable } from 'rxjs';
 })
 export class BibliotecaService {
 
-  private apiUrl = 'http://127.0.0.1:5000/api';
-
+  private apiUrl = 'https://shiny-memory-v6q997rp7grg2p74g-5000.app.github.dev/api';  
+  
   constructor(private http: HttpClient) { }
 
   // Scarica tutti i generi
